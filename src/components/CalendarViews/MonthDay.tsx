@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ShiftProps } from "../../types/Shift.js";
 import Shift from "./Shift.js";
 interface DayProps {

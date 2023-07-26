@@ -8,7 +8,7 @@ import allAvailableShifts from "../mock_data/availableShifts";
 
 export default function Schedule() {
   const [shifts, setShifts] = useState<ShiftProps[]>(allShifts);
-  const [availableShifts, setAvailableShifts] = useState<ShiftProps[]>(allAvailableShifts);
+  const [availableShifts, setAvailableShifts] = useState<any[]>(allAvailableShifts);
   const [selectedShift, setSelectedShift] = useState<ShiftProps | null>(null);
 
   function removeCurrentShift(shift: ShiftProps) {

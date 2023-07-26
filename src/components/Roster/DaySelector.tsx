@@ -1,4 +1,3 @@
-import React from "react";
 import { days } from "../../utils/date";
 import LeftArrowSvg from "./ArrowSvg/LeftArrowSvg";
 import RightArrowSvg from "./ArrowSvg/RightArrowSvg";

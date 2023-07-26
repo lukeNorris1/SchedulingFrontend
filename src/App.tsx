@@ -11,7 +11,6 @@ import {
   Admin,
   Unauthorized,
   Layout,
-  TestPage,
   AllEmployeeShifts
 } from "./pages/index";
 import RequireAuth from "./components/RequireAuth";
@@ -31,7 +30,6 @@ function App() {
             {/* public routes */}
             <Route path="login" element={<Login />} />
             <Route path="unauthorized" element={<Unauthorized />} />
-            <Route path="test" element={<TestPage />} />
 
             {/* Employee Routes */}
             <Route element={<RequireAuth allowedRoles={[ROLES.Employee]} />}>

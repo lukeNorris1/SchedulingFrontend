@@ -23,7 +23,7 @@ export default function EmployeeDropdown({
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [employees, setEmployees] = useState<User[]>();
-  const [openDirection, setOpenDirection] = useState<"up" | "down">("down");
+  const [_, setOpenDirection] = useState<"up" | "down">("down");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -127,21 +127,21 @@ export default function EmployeeDropdown({
   );
 
   //! still need current date to figure out which day it is for availability
-  function employeeAvailable(employee: User) {
-    const startTime = "09:00 AM";
-    const endTime = "11:00 AM";
-    if (employee.availability[currentDate.getDay()]) {
-      const start = employee.availability[currentDate.getDay()]!.start;
-      const end = employee.availability[currentDate.getDay()]!.end;
-      //&& compareTime(end, new Date(getValues('endDate')), true)
-      if (true) {
-        return false;
-      } else {
-        return true;
-      }
-    }
-    return true;
-  }
+  // function employeeAvailable(employee: User) {
+  //   const startTime = "09:00 AM";
+  //   const endTime = "11:00 AM";
+  //   if (employee.availability[currentDate.getDay()]) {
+  //     // const start = employee.availability[currentDate.getDay()]!.start;
+  //     // const end = employee.availability[currentDate.getDay()]!.end;
+  //     //&& compareTime(end, new Date(getValues('endDate')), true)
+  //     if (true) {
+  //       return false;
+  //     } else {
+  //       return true;
+  //     }
+  //   }
+  //   return true;
+  // }
 
   return (
     <div

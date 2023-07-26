@@ -2,7 +2,6 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useEffect, useState } from "react";
 import { ShiftProps } from "../../types/Shift";
 import { formatDate, tConvert } from "../../utils/date";
-import { User, getHighestRole } from "../../types/User";
 import { DB_URL } from "../../utils/dbString";
 import { ObjectId } from "mongodb";
 import getUser from '../../mock_data/getUser'
@@ -21,7 +20,7 @@ interface PopupProps {
 }
 
 export default function Popup({ selectedShift, setSelectedShift }: PopupProps) {
-  const [selectedEmployee, setSelectedEmployee] = useState(getUser);
+  const [selectedEmployee] = useState(getUser);
   const [shiftClockEvents, setShiftClockEvents] = useState<
     shiftClockEvent[] | undefined
   >();

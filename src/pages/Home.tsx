@@ -12,41 +12,41 @@ export default function Home() {
   const [clockState, setClockState] = useState<"clockOn" | "clockOff" | "off">(
     "clockOn"
   );
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [errors, setErrors] = useState<string>();
+  const [isLoading] = useState<boolean>(false);
+  const [errors] = useState<string>();
   const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (nextShift) checkClockOnEntryExists();
   }, [nextShift]);
 
-  async function createClockOnEvent() {
-    try {
-      const url = `${DB_URL}/clockInOut/create`;
+  // async function createClockOnEvent() {
+  //   try {
+  //     const url = `${DB_URL}/clockInOut/create`;
 
-      const body = {
-        shiftId: nextShift?._id,
-        employeeId: user?._id,
-        eventType: "clockOn",
-      };
+  //     const body = {
+  //       shiftId: nextShift?._id,
+  //       employeeId: user?._id,
+  //       eventType: "clockOn",
+  //     };
 
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
+  //     const response = await fetch(url, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(body),
+  //     });
 
-      if (!response.ok) {
-        throw new Error("Failed to create clock-in/out event");
-      }
+  //     if (!response.ok) {
+  //       throw new Error("Failed to create clock-in/out event");
+  //     }
 
-      checkClockOnEntryExists();
-    } catch (error) {
-      console.error(error);
-    }
-  }
+  //     checkClockOnEntryExists();
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }
 
   async function createClockOffEvent() {
     try {

@@ -1,7 +1,4 @@
-import React from "react";
-import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../context/UserContext";
 
 export default function Admin() {
   const navigate = useNavigate();

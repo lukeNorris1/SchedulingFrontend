@@ -1,11 +1,10 @@
-import { useState, memo } from "react";
 import { tConvert } from "../../utils/date";
 import { ObjectId } from "mongodb";
 
 interface SpecificShift {
   startTime: Date;
   endTime: Date;
-  employeeId?: ObjectId;
+  employeeId?: ObjectId | string;
 }
 
 export default function ExcessShift({
@@ -13,7 +12,7 @@ export default function ExcessShift({
   endTime,
   employeeId,
 }: SpecificShift) {
-  function objectIdToRGB(objectId: ObjectId | undefined) {
+  function objectIdToRGB(objectId: ObjectId | undefined | string) {
     if (objectId == undefined) return { red: 149, green: 150, blue: 149 };
     // Extract the hexadecimal string representation of the ObjectId
     const hexString = objectId.toString().substring(0, 6);

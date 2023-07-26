@@ -1,18 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import MonthView from "./MonthView";
 import WeekView from "./WeekView";
 import { months } from "../../utils/date";
 import WeekCalendar from "./WeekCalendar";
 import DateArrows from "./DateArrows";
 import { ShiftProps } from "../../types/Shift";
-import UserContext from "../../context/UserContext";
 import allShifts from '../../mock_data/allShifts';
 
 export default function Schedule() {
   const [currentDate, setCurrentDate] = useState<Date>(new Date());
   const [viewState, setViewState] = useState("month");
   const [shifts, setShifts] = useState<ShiftProps[] | null>();
-  const { user } = useContext(UserContext);
 
   console.log(allShifts)
 

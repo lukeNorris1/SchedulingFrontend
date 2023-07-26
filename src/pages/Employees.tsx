@@ -1,8 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import UserContext from "../context/UserContext";
 import { User, getHighestRole } from "../types/User";
-import { DB_URL } from "../utils/dbString";
 import {
   EditSvg,
   DeleteSvg,
@@ -14,8 +12,7 @@ import AddSvg from "../components/Employee/AddSvg";
 import allEmployees from "../mock_data/AllEmployees";
 
 export default function Employees() {
-  const { user } = useContext(UserContext);
-  const [employees, setEmployees] = useState<any[]>(allEmployees);
+  const [employees] = useState<any[]>(allEmployees);
   const [selectedEmployee, setSelectedEmployee] = useState<User | null>(null);
   const [searchFilter, setSearchFilter] = useState("");
   const navigate = useNavigate();

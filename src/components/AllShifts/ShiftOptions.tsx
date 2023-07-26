@@ -1,6 +1,5 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DropdownSvg from "../Roster/DropdownSvg";
-import UserContext from "../../context/UserContext";
 import { ShiftProps } from "../../types/Shift";
 import { DB_URL } from "../../utils/dbString";
 import { useNavigate, } from "react-router-dom";
@@ -11,11 +10,9 @@ interface props {
   closePopup: () => void;
 }
 
-//! After delete has to close modal and remove shift
 
 export default function ShiftOptions({ shift, removeShift, closePopup }: props) {
   const [isOpen, setIsOpen] = useState(false);
-  const { user } = useContext(UserContext);
   const navigate = useNavigate();
 
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -39,7 +36,6 @@ export default function ShiftOptions({ shift, removeShift, closePopup }: props) 
         },
       });
 
-      const deletedShift = await response.json();
 
       if (!response.ok) {
         throw new Error("Failed to delete shift");

@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from "react";
+import {  useState } from "react";
 import { days } from "../../utils/date";
 
 export default function CalendarComponent() {
-  const [selectedDay, setSelectedDay] = useState(0)
+  const [selectedDay] = useState(0)
 
-
-  function handleNextDay(){
-    selectedDay
-  }
 
   return (
     <div className="flex flex-col justify-center items-center text-white ">

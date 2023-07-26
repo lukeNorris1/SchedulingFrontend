@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ShiftProps } from "../types/Shift";
 import { useNavigate, useParams } from "react-router-dom";
 import { DB_URL } from "../utils/dbString";

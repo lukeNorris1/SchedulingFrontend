@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { User } from "../types/User";
 
 interface props {
@@ -16,7 +16,7 @@ const ConfirmationModal = ({
   prompt,
   position,
 }: props) => {
-  const [popCard, setPopCard] = useState("hidden");
+  const [_, setPopCard] = useState("hidden");
   const [fade, setFade] = useState(false);
 
   useEffect(() => {

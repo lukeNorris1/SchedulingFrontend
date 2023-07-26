@@ -1,15 +1,10 @@
-import { useContext, useEffect, useState } from "react";
-import { ShiftProps } from "../types/Shift";
-import { DB_URL } from "../utils/dbString";
-import UserContext from "../context/UserContext";
-import { get } from "../utils/http";
+import { useEffect, useState } from "react";
 import { months } from "../utils/date";
 import DateArrows from "../components/CalendarViews/DateArrows";
 import MonthView from "../components/CalendarViews/MonthView";
 import EmployeeDropdown from "../components/Roster/EmployeeDropdown";
 import RoleDropDown from "../components/Roster/RoleDropDown";
 import { User } from "../types/User";
-import { ObjectId } from "mongodb";
 import allShifts from "../mock_data/allShifts";
 import allAvailableShifts from "../mock_data/availableShifts";
 
@@ -21,7 +16,6 @@ export default function AllEmployeeShifts() {
   const [shiftSelector, setShiftSelector] = useState<
     "all" | "available" | "employee" | undefined
   >();
-  const { user } = useContext(UserContext);
 
   const isMobile = window.innerWidth <= 768;
 

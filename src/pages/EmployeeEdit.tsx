@@ -1,26 +1,25 @@
-import { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import UserContext from "../context/UserContext";
-import { User, getHighestRole } from "../types/User";
-import { DB_URL } from "../utils/dbString";
+import { getHighestRole } from "../types/User";
 import TimePicker from "../components/Employee/TimePicker";
 import EmployeeRoleSelect from "../components/Employee/EmployeeRoleSelect";
 import allEmployees from "../mock_data/AllEmployees";
 
 export default function EmployeeEdit() {
   const { user } = useContext(UserContext);
-  const { id } = useParams();
   const navigate = useNavigate();
   const { register, handleSubmit, control } = useForm();
-  const [userData, setUserData] = useState(allEmployees[1]);
+  const [userData] = useState(allEmployees[1]);
 
   const onSubmit: SubmitHandler<any> = async (data) => {
-    const parsedData = {
-      ...data,
-      roles: [parseInt(data.roles, 10)], // Convert the "roles" field to a number
-      payRate: parseFloat(data.payRate), // Convert the "payRate" field to a number
-    };
+    console.log(data)
+    // const parsedData = {
+    //   ...data,
+    //   roles: [parseInt(data.roles, 10)], // Convert the "roles" field to a number
+    //   payRate: parseFloat(data.payRate), // Convert the "payRate" field to a number
+    // };
 
     // const url = `${DB_URL}/user/edit/${userData?._id}`;
     // const response = await fetch(url, {

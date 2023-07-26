@@ -17,7 +17,6 @@ interface props {
 export default function MonthView({ propDate, shifts, adminView, removeShift }: props) {
   const [currentDate] = useState(new Date());
   const [selectedShift, setSelectedShift] = useState<ShiftProps | null>(null);
-  const [isOpen, setIsOpen] = useState<boolean>(false)
   const [popupIsOpen, setPopupIsOpen] = useState<boolean>(false)
   const [excessDayNum, setExcessDayNum] = useState<number | undefined>(undefined)
 
