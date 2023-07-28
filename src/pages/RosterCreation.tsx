@@ -25,7 +25,6 @@ export default function RosterCreation() {
   }
 
   function addShift(shift: createShift) {
-    console.log(shift);
     const dayIndex = currentDate.getDate();
     setShiftAllocation((prev) => {
       const newArray = [...prev];

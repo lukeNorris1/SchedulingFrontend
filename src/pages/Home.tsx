@@ -1,6 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import UserContext from "../context/UserContext";
-import { DB_URL } from "../utils/dbString";
+import { useEffect, useState } from "react";
 import { ShiftProps } from "../types/Shift";
 import { formatDate, tConvert } from "../utils/date";
 import mockNextShift from "../mock_data/nextShift";
@@ -14,7 +12,6 @@ export default function Home() {
   );
   const [isLoading] = useState<boolean>(false);
   const [errors] = useState<string>();
-  const { user } = useContext(UserContext);
 
   useEffect(() => {
     if (nextShift) checkClockOnEntryExists();
@@ -49,71 +46,71 @@ export default function Home() {
   // }
 
   async function createClockOffEvent() {
-    try {
-      const url = `${DB_URL}/clockInOut/create`;
+    // try {
+    //   const url = `${DB_URL}/clockInOut/create`;
 
-      const body = {
-        shiftId: nextShift?._id,
-        employeeId: user?._id,
-        eventType: "clockOff",
-      };
+    //   const body = {
+    //     shiftId: nextShift?._id,
+    //     employeeId: user?._id,
+    //     eventType: "clockOff",
+    //   };
 
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
+    //   const response = await fetch(url, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(body),
+    //   });
 
-      if (!response.ok) {
-        throw new Error("Failed to create clock-in/out event");
-      }
+    //   if (!response.ok) {
+    //     throw new Error("Failed to create clock-in/out event");
+    //   }
 
-      // Clock-in/out event created successfully
-      console.log("Clock-in/out event created");
-      setClockState("off");
-    } catch (error) {
-      console.error(error);
-    }
+    //   // Clock-in/out event created successfully
+    //   console.log("Clock-in/out event created");
+    //   setClockState("off");
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
 
   const checkClockOnEntryExists = async () => {
-    try {
-      const url = `${DB_URL}/clockInOut/checkClockOn`;
+    // try {
+    //   const url = `${DB_URL}/clockInOut/checkClockOn`;
 
-      const body = {
-        shiftId: nextShift?._id,
-        employeeId: user?._id,
-      };
+    //   const body = {
+    //     shiftId: nextShift?._id,
+    //     employeeId: user?._id,
+    //   };
 
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      });
+    //   const response = await fetch(url, {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(body),
+    //   });
 
-      if (!response.ok) {
-        throw new Error("Failed to check clock-on entry");
-      }
+    //   if (!response.ok) {
+    //     throw new Error("Failed to check clock-on entry");
+    //   }
 
-      const data = await response.json();
+    //   const data = await response.json();
 
-      // Check the response from the server
-      if (data.clockState == "clockOff") {
-        setClockState("clockOff");
-        // Allow the user to clock off
-      } else if (data.clockState == "clockOn") {
-        setClockState("clockOn");
-        // Allow the user to clock on
-      } else if (data.clockState == "off") {
-        setClockState("off");
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    //   // Check the response from the server
+    //   if (data.clockState == "clockOff") {
+    //     setClockState("clockOff");
+    //     // Allow the user to clock off
+    //   } else if (data.clockState == "clockOn") {
+    //     setClockState("clockOn");
+    //     // Allow the user to clock on
+    //   } else if (data.clockState == "off") {
+    //     setClockState("off");
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
   };
 
   /*

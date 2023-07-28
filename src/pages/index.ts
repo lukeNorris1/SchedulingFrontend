@@ -7,5 +7,4 @@ export { default as Schedule } from "./Schedule";
 export { default as Admin } from "./Admin";
 export { default as Unauthorized } from "./Unauthorized";
 export { default as Layout } from "./Layout";
-export { default as TestPage } from "./TestPage";
 export { default as AllEmployeeShifts } from "./AllEmployeeShifts";

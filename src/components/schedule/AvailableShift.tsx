@@ -8,7 +8,6 @@ interface availableProps {
 }
 
 export default function AvailableShift({ availableShifts, addShift }: availableProps) {
-  console.log(availableShifts)
   return (
     <>
     

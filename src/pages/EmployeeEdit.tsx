@@ -13,8 +13,7 @@ export default function EmployeeEdit() {
   const { register, handleSubmit, control } = useForm();
   const [userData] = useState(allEmployees[1]);
 
-  const onSubmit: SubmitHandler<any> = async (data) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<any> = async () => {
     // const parsedData = {
     //   ...data,
     //   roles: [parseInt(data.roles, 10)], // Convert the "roles" field to a number

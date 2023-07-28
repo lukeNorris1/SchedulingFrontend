@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { User } from "../../types/User";
 import UserContext from "../../context/UserContext";
-import { DB_URL } from "../../utils/dbString";
+import allEmployees from "../../mock_data/AllEmployees";
 interface EmployeeSelectProps {
   selectedEmployee: User | undefined;
   selectedRole: number | undefined;
@@ -22,31 +22,14 @@ export default function EmployeeDropdown({
   const { user } = useContext(UserContext);
   const [isOpen, setIsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [employees, setEmployees] = useState<User[]>();
+  const [employees, setEmployees] = useState<any[]>();
   const [_, setOpenDirection] = useState<"up" | "down">("down");
 
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   async function getEmployees() {
-    try {
-      await fetch(`${DB_URL}/user/users`, {
-        headers: {
-          Authorization: `${user?.token}`,
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Handle the response data
-          setEmployees(data);
-        })
-        .catch((error) => {
-          // Handle the error
-          console.error("Error:", error);
-        });
-    } catch (err) {
-      console.log(`error: ${err}`);
-    }
+   setEmployees(allEmployees)
   }
 
   useEffect(() => {

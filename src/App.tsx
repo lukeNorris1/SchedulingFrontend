@@ -11,7 +11,7 @@ import {
   Admin,
   Unauthorized,
   Layout,
-  AllEmployeeShifts
+  AllEmployeeShifts,
 } from "./pages/index";
 import RequireAuth from "./components/RequireAuth";
 import { ROLES } from "./types/User";
@@ -49,8 +49,6 @@ function App() {
               <Route path="/admin/employees/add" element={<EmployeeAdd />} />
               <Route path="/admin/roster/create" element={<Roster />} />
             </Route>
-
-
 
             {/* catch all */}
             <Route path="*" element={<Login />} />

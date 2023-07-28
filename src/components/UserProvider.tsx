@@ -59,7 +59,6 @@ export default function UserProvider({ children }: UserProviderProps) {
     setUser(undefined);
     setToken("");
   };
-  
 
   return (
     <UserContext.Provider value={{ user, login, register, logout }}>

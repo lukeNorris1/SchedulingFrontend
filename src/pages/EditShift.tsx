@@ -1,20 +1,16 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { ShiftProps } from "../types/Shift";
-import { useNavigate, useParams } from "react-router-dom";
-import { DB_URL } from "../utils/dbString";
+import { useNavigate } from "react-router-dom";
 import EmployeeDropdown from "../components/Roster/EmployeeDropdown";
 import { User } from "../types/User";
 import RoleDropDown from "../components/Roster/RoleDropDown";
 import TimePicker from "../components/Roster/TimePicker";
 import { formatDate, tConvert } from "../utils/date";
-import UserContext from "../context/UserContext";
 
 interface editProps {}
 
 export default function EditShift({}: editProps) {
-  const { id } = useParams();
-  const { user } = useContext(UserContext);
-  const [selectedShift, setSelectedShift] = useState<ShiftProps>();
+  const [selectedShift] = useState<ShiftProps>();
   const [selectedEmployee, setSelectedEmployee] = useState<User>();
   const [selectedRole, setSelectedRole] = useState<number | undefined>();
   const [startDate, setStartDate] = useState<Date>(new Date());
@@ -23,45 +19,42 @@ export default function EditShift({}: editProps) {
   const navigate = useNavigate();
 
   async function getShiftDetails() {
-    const url = `${DB_URL}/shifts/collect/${id}`;
-    try {
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setSelectedShift(data);
-
-        const startDate = new Date(data.startTime);
-        setStartDate(startDate);
-        const endDate = new Date(data.endTime);
-        setEndDate(endDate);
-      } else if (response.status === 404) {
-        // No next shift found for the employee
-        console.log("error");
-      } else {
-        // Handle other error cases
-        console.log("Error:", response.status);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   const response = await fetch(url, {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   if (response.ok) {
+    //     const data = await response.json();
+    //     setSelectedShift(data);
+    //     const startDate = new Date(data.startTime);
+    //     setStartDate(startDate);
+    //     const endDate = new Date(data.endTime);
+    //     setEndDate(endDate);
+    //   } else if (response.status === 404) {
+    //     // No next shift found for the employee
+    //     console.log("error");
+    //   } else {
+    //     // Handle other error cases
+    //     console.log("Error:", response.status);
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
   async function getEmployeeDetails() {
-    try {
-      // Simulate API call to fetch user data
-      const response = await fetch(
-        `${DB_URL}/user/${selectedShift?.employeeId}`
-      );
-      const employee: User = await response.json();
-      setSelectedEmployee(employee);
-    } catch (err) {
-      console.log(`Error: ${err}`);
-    }
+    // try {
+    //   // Simulate API call to fetch user data
+    //   const response = await fetch(
+    //     `${DB_URL}/user/${selectedShift?.employeeId}`
+    //   );
+    //   const employee: User = await response.json();
+    //   setSelectedEmployee(employee);
+    // } catch (err) {
+    //   console.log(`Error: ${err}`);
+    // }
   }
 
   function handleStartDateChange(value: Date) {
@@ -74,41 +67,41 @@ export default function EditShift({}: editProps) {
 
   async function handleSubmit(e: any) {
     e.preventDefault();
-    const url = `${DB_URL}/shifts/editOne/${id}`;
+    // const url = `${DB_URL}/shifts/editOne/${id}`;
 
-    if (!selectedShift) return;
+    // if (!selectedShift) return;
 
-    try {
-      const parsedData = {
-        createdBy: user!._id.toString(),
-        employeeId: selectedEmployee?._id,
-        startTime: startDate,
-        endTime: endDate,
-        note: selectedShift.note,
-      };
+    // try {
+    //   const parsedData = {
+    //     createdBy: user!._id.toString(),
+    //     employeeId: selectedEmployee?._id,
+    //     startTime: startDate,
+    //     endTime: endDate,
+    //     note: selectedShift.note,
+    //   };
 
-      const response = await fetch(url, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(parsedData),
-      });
+    //   const response = await fetch(url, {
+    //     method: "PUT",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(parsedData),
+    //   });
 
-      if (response.ok) {
-        const data = await response.json();
-        console.log(data)
-        navigate("/admin/shifts/all", { replace: true })
-      } else if (response.status === 404) {
-        // No next shift found for the employee
-        console.log('error no shift found')
-      } else {
-        // Handle other error cases
-        console.log("Error:", response.status);
-      }
-    } catch (err) {
-      console.log(err);
-    }
+    //   if (response.ok) {
+    //     const data = await response.json();
+    //     console.log(data)
+    //     navigate("/admin/shifts/all", { replace: true })
+    //   } else if (response.status === 404) {
+    //     // No next shift found for the employee
+    //     console.log('error no shift found')
+    //   } else {
+    //     // Handle other error cases
+    //     console.log("Error:", response.status);
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   }
 
   useEffect(() => {
@@ -128,9 +121,7 @@ export default function EditShift({}: editProps) {
       <div className="bg-white rounded-lg shadow-md p-8 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/5 flex">
         {/* Left Column */}
         <div className="w-1/3 flex flex-col justify-center [&>p]:text-gray-500">
-          <span className="pb-2 font-bold">
-            Shift Details
-          </span>
+          <span className="pb-2 font-bold">Shift Details</span>
           <p>{formatDate(selectedShift.startTime)}</p>
           <p>
             Employee:{" "}
@@ -147,7 +138,7 @@ export default function EditShift({}: editProps) {
             <div className="flex justify-between mb-6">
               <button
                 className="text-blue-500 hover:underline"
-                onClick={() => navigate('/admin/shifts/all')}
+                onClick={() => navigate("/admin/shifts/all")}
               >
                 Back
               </button>

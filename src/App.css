@@ -1,10 +1,8 @@
 /* index.css or App.css */
-@import "./node_modules/typeface-open-sans/index.css";
 
 #root {
   margin: 0 auto;
   text-align: center;
-  font-family: "Open Sans", sans-serif;
 }
 
 

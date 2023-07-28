@@ -2,9 +2,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import React, { Fragment, useEffect, useState } from "react";
 import { ShiftProps } from "../../types/Shift";
 import { formatDate, tConvert } from "../../utils/date";
-import { DB_URL } from "../../utils/dbString";
 import { ObjectId } from "mongodb";
-import getUser from '../../mock_data/getUser'
+import getUser from "../../mock_data/getUser";
 
 interface shiftClockEvent {
   id: ObjectId;
@@ -21,7 +20,7 @@ interface PopupProps {
 
 export default function Popup({ selectedShift, setSelectedShift }: PopupProps) {
   const [selectedEmployee] = useState(getUser);
-  const [shiftClockEvents, setShiftClockEvents] = useState<
+  const [shiftClockEvents] = useState<
     shiftClockEvent[] | undefined
   >();
 
@@ -37,28 +36,24 @@ export default function Popup({ selectedShift, setSelectedShift }: PopupProps) {
 
   if (!selectedShift) return <></>;
 
-
   async function getClockEventsByShiftId() {
-    try {
-      const url = `${DB_URL}/clockInOut/shift/${selectedShift?._id}`;
-
-      const response = await fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const clockEvents = await response.json();
-
-      if (!response.ok) {
-        throw new Error("Failed to create clock-in/out event");
-      } else if (response.ok) {
-        setShiftClockEvents(clockEvents);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    // try {
+    //   const url = `${DB_URL}/clockInOut/shift/${selectedShift?._id}`;
+    //   const response = await fetch(url, {
+    //     method: "GET",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //   });
+    //   const clockEvents = await response.json();
+    //   if (!response.ok) {
+    //     throw new Error("Failed to create clock-in/out event");
+    //   } else if (response.ok) {
+    //     setShiftClockEvents(clockEvents);
+    //   }
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
 
   //! timestamp for clock event is not in right time zone or time isn't correct
@@ -71,7 +66,6 @@ export default function Popup({ selectedShift, setSelectedShift }: PopupProps) {
     if (event == "clockOn") return "Clocked on - ";
     else if ((event = "clockOff")) return "Clocked off - ";
   }
-
 
   return (
     <>
@@ -135,7 +129,9 @@ export default function Popup({ selectedShift, setSelectedShift }: PopupProps) {
                         shiftClockEvents.map((event, index) => (
                           <div
                             key={index}
-                            className={`text-white ${index == 0 && "pb-1"} py-1`}
+                            className={`text-white ${
+                              index == 0 && "pb-1"
+                            } py-1`}
                           >
                             <span className="text-gray-100">
                               {eventOutputHandler(event.eventType)}

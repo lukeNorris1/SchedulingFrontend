@@ -7,7 +7,7 @@ import getUser from "../mock_data/getUser";
 export default function Profile() {
   const [loggedUser] = useState(getUser);
   const [signOutPopup, setSignOutPopup] = useState(false);
-  const { logout, user } = useContext(UserContext);
+  const { logout } = useContext(UserContext);
   const navigate = useNavigate();
 
   const signOut = () => {
@@ -16,15 +16,15 @@ export default function Profile() {
   };
 
   function AdminLink() {
-    if (user?.roles.includes(5150)) {
+    //if (user?.roles.includes(5150)) {
       return (
         <div className="bg-gray-800 text-white font-bold p-2 block w-full text-center rounded hover:text-gray-400">
           <a href="/admin">Admin</a>
         </div>
       );
-    }
+    //}
 
-    return null;
+    //return null;
   }
 
   return (

@@ -12,7 +12,6 @@ export default function Schedule() {
   const [viewState, setViewState] = useState("month");
   const [shifts, setShifts] = useState<ShiftProps[] | null>();
 
-  console.log(allShifts)
 
   function dateHandler(dateFormat: string) {
     if (dateFormat === "week" && viewState !== "week") setViewState("week");
